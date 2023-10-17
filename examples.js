@@ -1,5 +1,6 @@
-function sum(array, win){
+function sum(array, win, counter){
     win = false;
+    let player = "";
     for (let i = 0; i < 3; i++){
         let sumFilas = 0;
         let sumColumnas = 0;
@@ -17,7 +18,8 @@ function sum(array, win){
         }
         if (sumFilas === 3 || sumColumnas === 3 || sumDiagonal1 === 3 || sumDiagonal2 === 3 || sumFilas === 30 || sumColumnas === 30 || sumDiagonal1 === 30 || sumDiagonal2 === 30){
             win = true;
-            console.log("Has ganado");
+            player = counter % 2 === 0 ? "jugador 1" : "jugador 2";
+            document.getElementById("turno").innerHTML = "Has ganado jugador " + player;
             break;
         }
     }
@@ -65,10 +67,9 @@ detection(array, counter);
 do{
     counter += 1;
     detection(array, counter);
-    win = sum(array, win)
+    win = sum(array, win, counter)
     if (win === true){
         break;
     }
     
 }while (counter < 10);
-
